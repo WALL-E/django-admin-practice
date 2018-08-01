@@ -6,6 +6,7 @@ import json
 import uuid
 
 from django.db import models
+import requests
 
 
 class BaseObject(models.Model):
@@ -154,7 +155,6 @@ class Biz(BaseObject):
 
 
     def save(self, *args, **kwargs):
-        print("biz biz biz")
         super(Biz, self).save(*args, **kwargs)
 
     class Meta:
@@ -177,8 +177,18 @@ class TradingStrategy(BaseObject):
     def __str__(self):
         return self.name
 
-   
     def save(self, *args, **kwargs):
+        url = "http://httpbin.org/anything"
+        data = {"username": "aaaaaa", "password": "bbbbbb"}
+        res = requests.post(url, data=data)
+        print(res.json())
+        super(TradingStrategy, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        url = "http://httpbin.org/anything"
+        data = {"username": "xxxxxx", "password": "yyyyyy"}
+        res = requests.post(url, data=data)
+        print(res.json())
         super(TradingStrategy, self).save(*args, **kwargs)
 
     class Meta:
