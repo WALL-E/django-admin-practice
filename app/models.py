@@ -179,24 +179,26 @@ class TradingStrategy(BaseObject):
         return self.name
 
     def save(self, *args, **kwargs):
-        url = "http://httpbin.org/anything"
+        # url = "http://httpbin.org/anything"
+        url = "http://127.0.0.1:7000/strategy/add"
         data = {
             'name': self.name,
             'price': self.price,
-            'rule': self.order_rule,
-            'side': self.order_side,
+            'rule': self.order_rule.code,
+            'side': self.order_side.code,
             'amount': self.amount,
             'total': self.total,
             'interval': self.interval,
-            'enable': self.enable and 1 or 0,
-            'username': self.username,
+            'enabled': self.enable and 1 or 0, 
+            'userid': self.username,
         }
         res = requests.post(url, data=data)
         print(res.json())
         super(TradingStrategy, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        url = "http://httpbin.org/anything"
+        # url = "http://httpbin.org/anything"
+        url = "http://127.0.0.1:7000/strategy/remove"
         data = {
             'name': self.name
         }
