@@ -167,6 +167,7 @@ class TradingStrategy(BaseObject):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=64, null=False, unique=False)
     price = models.DecimalField(max_digits=40, decimal_places=18, default=0, null=False)
+    symbol =  models.ForeignKey(Symbol, on_delete=False)
     order_rule =  models.ForeignKey(OrderRule, on_delete=False)
     order_side =  models.ForeignKey(OrderSide, on_delete=False)
     amount = models.DecimalField(max_digits=40, decimal_places=18, default=0, null=False)
@@ -184,6 +185,7 @@ class TradingStrategy(BaseObject):
         data = {
             'name': self.name,
             'price': self.price,
+            'symbol': self.symbol,
             'rule': self.order_rule.code,
             'side': self.order_side.code,
             'amount': self.amount,

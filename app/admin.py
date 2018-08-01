@@ -156,7 +156,7 @@ class OrderRuleAdmin(admin.ModelAdmin):
 
 
 class TradingStrategyAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'order_rule', 'order_side', 'amount', 'total', 'interval', 'enable', 'username', 'created_at', 'updated_at',)
+    list_display = ('name', 'price', 'symbol', 'order_rule', 'order_side', 'amount', 'total', 'interval', 'enable', 'username', 'created_at', 'updated_at',)
     list_filter = [
         'order_rule',
         'username',
@@ -172,7 +172,7 @@ class TradingStrategyAdmin(admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
-            return ['name', 'price', 'order_rule', 'order_side', 'amount', 'total', 'interval', 'enable', 'username']
+            return ['name', 'price', 'symbol', 'order_rule', 'order_side', 'amount', 'total', 'interval', 'enable', 'username']
         else:
             return []
 
