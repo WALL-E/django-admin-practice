@@ -176,6 +176,9 @@ class TradingStrategyAdmin(admin.ModelAdmin):
         else:
             return []
 
+    def get_actions(self, request):
+        return []
+
 
 admin.site.register(Currencie, CurrencieAdmin)
 admin.site.register(Symbol, SymbolAdmin)
