@@ -179,17 +179,29 @@ class TradingStrategy(BaseObject):
 
     def save(self, *args, **kwargs):
         url = "http://httpbin.org/anything"
-        data = {"username": "aaaaaa", "password": "bbbbbb"}
+        data = {
+            'name': self.name,
+            'price': self.price,
+            'rule': self.order_rule,
+            'side': self.order_side,
+            'amount': self.amount,
+            'total': self.total,
+            'interval': self.interval,
+            'enable': self.enable and 1 or 0,
+            'username': self.username,
+        }
         res = requests.post(url, data=data)
         print(res.json())
         super(TradingStrategy, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         url = "http://httpbin.org/anything"
-        data = {"username": "xxxxxx", "password": "yyyyyy"}
+        data = {
+            'name': self.name
+        }
         res = requests.post(url, data=data)
         print(res.json())
-        super(TradingStrategy, self).save(*args, **kwargs)
+        super(TradingStrategy, self).delete(*args, **kwargs)
 
     class Meta:
         verbose_name = 'TradingStrategy'
