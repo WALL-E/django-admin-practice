@@ -200,7 +200,8 @@ class TradingStrategy(BaseObject):
         # url = "http://httpbin.org/anything"
         url = "http://127.0.0.1:7000/strategy/remove"
         data = {
-            'name': self.name
+            'name': self.name,
+            'userid': self.username,
         }
         res = requests.post(url, data=data)
         print(res.json())
