@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
+from django.db.models import Q
 
 from .models import Currencie, Symbol, Balance, Certification, Account, Biz
 from .models import OrderSide, OrderType, OrderRule, TradingStrategy
@@ -178,6 +180,17 @@ class TradingStrategyAdmin(admin.ModelAdmin):
 
     def get_actions(self, request):
         return []
+
+    def formfield_for_foreignkey(self, db_field, request=None, **kwargs):           
+        if db_field.name == 'username':                                                
+            kwargs['initial'] = request.user.id                                     
+            kwargs['queryset'] = User.objects.filter(username=request.user.username)
+        if db_field.name == 'symbol':                                                
+            kwargs['initial'] =  Symbol.objects.get(name='fteth').id                                 
+            kwargs['queryset'] = Symbol.objects.filter(Q(name='fteth') | Q(name='ethusdt'))
+        return super(TradingStrategyAdmin, self).formfield_for_foreignkey(                     
+            db_field, request, **kwargs                                             
+        )   
 
 
 admin.site.register(Currencie, CurrencieAdmin)
