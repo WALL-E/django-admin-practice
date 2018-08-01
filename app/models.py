@@ -171,8 +171,8 @@ class TradingStrategy(BaseObject):
     order_side =  models.ForeignKey(OrderSide, on_delete=False)
     amount = models.DecimalField(max_digits=40, decimal_places=18, default=0, null=False)
     total = models.DecimalField(max_digits=40, decimal_places=18, default=0, null=False)
-    interval = models.DecimalField(max_digits=40, decimal_places=18, default=0, null=False)
-    enable = models.BooleanField(null=False, default=False)
+    interval = models.DecimalField(max_digits=40, decimal_places=18, default=10, null=False)
+    enable = models.BooleanField(null=False, default=True)
     username = models.ForeignKey(User, on_delete=False)
 
     def __str__(self):
