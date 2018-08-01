@@ -6,6 +6,7 @@ yum update nss curl
 
 pip3 install --upgrade pip
 
+pip3 install gunicorn
 pip3 install requests
 pip3 install django
 pip3 install mysqlclient
