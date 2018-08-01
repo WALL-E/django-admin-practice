@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -172,7 +173,7 @@ class TradingStrategy(BaseObject):
     total = models.DecimalField(max_digits=40, decimal_places=18, default=0, null=False)
     interval = models.DecimalField(max_digits=40, decimal_places=18, default=0, null=False)
     enable = models.BooleanField(null=False, default=False)
-    username = models.CharField(max_length=64, null=False, unique=False)
+    username = models.ForeignKey(User, on_delete=False)
 
     def __str__(self):
         return self.name
