@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'app',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'dist')
+
+CRONJOBS = [
+    ('*/1 * * * *', 'app.cron.load_all.loads')
+]
