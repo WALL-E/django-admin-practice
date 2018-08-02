@@ -6,6 +6,6 @@ PWD=$(cd "$(dirname "$0")"; pwd)
 
 cd ${PWD}
 
-./get_balance.py
-./get_currencies.py
-./get_symbols.py
+./load_balance.py
+./load_currencie.py
+./load_symbol.py
