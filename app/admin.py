@@ -43,7 +43,7 @@ class BalanceAdmin(admin.ModelAdmin):
     search_fields = ['currency']
 
     def get_ordering(self, request):
-        return ['currency']
+        return ['-balance', 'currency']
 
 
 class CertificationAdmin(admin.ModelAdmin):
