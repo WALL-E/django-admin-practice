@@ -14,3 +14,5 @@ pip3 install mysqlclient
 pip3 install uuid
 pip3 install pandas
 pip3 install fcoin
+
+pip3 install django-crontab
