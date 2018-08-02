@@ -7,6 +7,7 @@ from .models import OrderSide, OrderType, OrderRule, TradingStrategy
 
 
 class CurrencieAdmin(admin.ModelAdmin):
+    fields = ('name', 'created_at')
     list_display = ('name', 'created_at')
     list_filter = [
         'created_at',
@@ -25,6 +26,7 @@ class CurrencieAdmin(admin.ModelAdmin):
         return False
 
 class SymbolAdmin(admin.ModelAdmin):
+    fields = ('name', 'base_currency', 'quote_currency', 'price_decimal', 'amount_decimal', 'created_at', 'updated_at')
     list_display = ('name', 'base_currency', 'quote_currency', 'price_decimal', 'amount_decimal', 'created_at', 'updated_at')
     list_filter = [
         'quote_currency',
@@ -46,6 +48,7 @@ class SymbolAdmin(admin.ModelAdmin):
         return False
 
 class BalanceAdmin(admin.ModelAdmin):
+    fields = ('currency', 'category', 'available', 'frozen', 'balance', 'created_at', 'updated_at')
     list_display = ('currency', 'category', 'available', 'frozen', 'balance', 'created_at', 'updated_at')
     list_filter = [
         'category',
