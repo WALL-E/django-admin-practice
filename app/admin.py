@@ -19,7 +19,7 @@ class CurrencieAdmin(admin.ModelAdmin):
 
 
 class SymbolAdmin(admin.ModelAdmin):
-    list_display = ('name', 'base_currency', 'quote_currency', 'price_decimal', 'amount_decimal', 'created_at')
+    list_display = ('name', 'base_currency', 'quote_currency', 'price_decimal', 'amount_decimal', 'created_at', 'updated_at')
     list_filter = [
         'quote_currency',
         'price_decimal',
