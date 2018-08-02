@@ -17,14 +17,14 @@ def do_load():
     data = api.get_balance()["data"]
 
     insert_template = "insert into app_balance (id, currency, category, available, frozen, balance, created_at, updated_at) values ('%s', '%s', '%s', %s, %s,  %s, %s, %s)"
-    update_template = "update app_balance set available=%s, frozen=%s, balance=%s, created_at=%s, updated_at=%s where currency='%s' and category='%s'"
+    update_template = "update app_balance set available=%s, frozen=%s, balance=%s, updated_at=%s where currency='%s' and category='%s'"
 
     for i in data:
         try:
             sql = insert_template % (str(uuid.uuid4()).replace("-", ""), i['currency'], i['category'], i['available'], i['frozen'], i['balance'], 'now()', 'now()');
             cursor.execute(sql)
         except MySQLdb.IntegrityError:
-            sql = update_template % (i['available'], i['frozen'], i['balance'], 'now()', 'now()', i['currency'], i['category']);
+            sql = update_template % (i['available'], i['frozen'], i['balance'], 'now()', i['currency'], i['category']);
             cursor.execute(sql)
         # print(sql)
       
