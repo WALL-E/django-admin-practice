@@ -13,10 +13,16 @@ class CurrencieAdmin(admin.ModelAdmin):
         'updated_at',
     ]
     search_fields = ['name']
+    readonly_fields = [field.name for field in Currencie._meta.fields]
 
     def get_ordering(self, request):
         return ['name']
 
+    def has_add_permission(self, request):
+        return False
+  
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 class SymbolAdmin(admin.ModelAdmin):
     list_display = ('name', 'base_currency', 'quote_currency', 'price_decimal', 'amount_decimal', 'created_at', 'updated_at')
@@ -28,10 +34,16 @@ class SymbolAdmin(admin.ModelAdmin):
         'updated_at',
     ]
     search_fields = ['name', 'base_currency', 'quote_currency']
+    readonly_fields = [field.name for field in Symbol._meta.fields]
 
     def get_ordering(self, request):
         return ['name']
 
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 class BalanceAdmin(admin.ModelAdmin):
     list_display = ('currency', 'category', 'available', 'frozen', 'balance', 'created_at', 'updated_at')
@@ -41,9 +53,16 @@ class BalanceAdmin(admin.ModelAdmin):
         'updated_at',
     ]
     search_fields = ['currency']
+    readonly_fields = [field.name for field in Balance._meta.fields]
 
     def get_ordering(self, request):
         return ['-balance', 'currency']
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 class CertificationAdmin(admin.ModelAdmin):
