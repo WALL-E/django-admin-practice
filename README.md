@@ -1,29 +1,37 @@
-# Fcoin 
-Quantitative Trading
+# Django Admin
+应用实践
 
-## Question
+## 环境依赖
 
-1. https://github.com/ContinuumIO/anaconda-issues/issues/6678
+* Python 3.6+
+* Django 2.0+
+* MariaDB 5.5
 
-## Fcoin SDK BUG
+## 安装
 
+1. 安装Python 3
+2. 安装Python第三方包
 ```
-python3.6/site-packages/fcoin/dataapi.py
-
-def get_signed(self, sig_str):
-        sig_str = base64.b64encode(sig_str.encode("utf8"))
-        signature = base64.b64encode(hmac.new(self.secret.encode("utf8"), sig_str, digestmod=hashlib.sha1).digest())
-        return signature
+misc/install.sh
+```
+3. 安装数据库
+```
+misc/db/install_mysql.sh
 ```
 
-## Trading Strategy
 
+## 启动
+
+1. 修改Django配置文件，数据库相关的配置 
+2. 初始化数据库
 ```
-SELECT f.name AS symbol, a.name, a.price, a.amount, a.total
-	, a.interval, a.enable, b.code AS rule, c.code AS side, d.username
-FROM app_tradingstrategy a, app_orderrule b, app_orderside c, auth_user d, app_symbol f
-WHERE (a.order_rule_id = b.id
-	AND a.order_side_id = c.id
-	AND a.username_id = d.id
-	AND a.symbol_id = f.id);
+reinit_db.sh
+```
+3. 初始化静态文件
+```
+reinit_static.sh
+```
+4. 启动Django应用
+```
+startup.sh
 ```
